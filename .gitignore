@@ -5,8 +5,9 @@ static
 build
 *.sublime-project
 *.log
-
+*.map
 .vscode
+
 bin
 doc
 dist

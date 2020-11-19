@@ -1,6 +1,6 @@
 module.exports = function (grunt) {
 
-    require("matchdep").filterAll("grunt-*").forEach(grunt.loadNpmTasks);
+    require("matchdep").filterAll(["grunt-*", "@*/grunt-*"]).forEach(grunt.loadNpmTasks);
 
     var globalConfig = {
         moduleName: "blueprint3d",
@@ -25,7 +25,7 @@ module.exports = function (grunt) {
 
     configuration.copy = {
         source: {
-            src: globalConfig.srcDir + "/**" ,
+            src: globalConfig.srcDir + "/**",
             dest: globalConfig.exampleDir + "/"
         },
 
@@ -100,7 +100,7 @@ module.exports = function (grunt) {
         target1: ["browserSync", "watch"]
     };
 
-    //TypeDoc and Uglify
+    /*/TypeDoc and Uglify
 
     configuration.typedoc = {
         options: {
@@ -117,7 +117,19 @@ module.exports = function (grunt) {
             name: globalConfig.moduleName
         },
         src: globalConfig.sources
-    };
+    }; */
+
+    configuration.typedoc = {
+        build: {
+            options: {
+                name: globalConfig.moduleName,
+                module: 'commonjs',
+                out: globalConfig.docDir,
+                target: 'ES5'
+            },
+            src: globalConfig.sources
+        }
+    }
 
     configuration.uglify = {
         options: {
